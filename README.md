@@ -1,6 +1,6 @@
-## React SubReddit App For Reddit
+## React app to search Reddit subreddits
 
-This react application uses Reddit APIs and get searched subreddit posts. 
+This react application uses Create-React-App and Reddit APIs to search subreddit posts. 
 
 Download or clone the project and then in the project directory, you can run:
 
