@@ -26,9 +26,7 @@ class App extends React.Component {
   }
 
   nextPage = () => {
-    let tempstr=this.url + this.state.currentSubreddit + "/" + this.state.sort + ".json?count=100&limit=10&after=" + this.state.after
-    console.log("nextPage: "+tempstr);
-
+    
     fetch(this.url + this.state.currentSubreddit + "/" + this.state.sort + ".json?count=100&limit=10&after=" + this.state.after)
       .then(res => res.json())
       .then((data) => {
@@ -39,14 +37,12 @@ class App extends React.Component {
           page: this.state.page + 1
         }));
         window.scrollTo(0, 0);
-        console.log("Children account"+data.data.children.length)
+        
       })
       .catch(console.log)
   }
 
   prevPage = () => {
-    let tempstr1=this.url + this.state.currentSubreddit + "/" + this.state.sort + ".json?count=100&limit=10&before=" + this.state.before
-    console.log("prepage: "+tempstr1)
     fetch(this.url + this.state.currentSubreddit + "/" + this.state.sort + ".json?count=100&limit=10&before=" + this.state.before)
       .then(res => res.json())
       .then((data) => {
@@ -59,8 +55,7 @@ class App extends React.Component {
         if (this.state.page > 1) {
           newState.page = this.state.page - 1
         }
-        this.setState(newState)
-        console.log("Children account"+data.data.children.length)
+        this.setState(newState)        
       })
       .catch(console.log)
   }
@@ -87,12 +82,8 @@ class App extends React.Component {
       currentSubreddit: sub,
       page: 1
     });
-    let callingurl=this.url + sub + "/" + this.state.sort + '.json?limit=10'
-    console.log("calling fetch2")
-    console.log(callingurl)
     fetch(this.url + sub + "/" + this.state.sort + '.json?limit=10')
       .then(res =>this.handleErrors(res))
-      //.then(res => res.json())
       .then((data) => {
           this.setState({
             files: data.data.children,
@@ -100,9 +91,6 @@ class App extends React.Component {
             before: data.data.before
           });
           window.scrollTo(0, 0);
-          //console.log("data after:"+data.data.after);
-          //console.log("data before"+data.data.before);
-          //console.log("Children account"+data.data.children.length)
       })
       .catch(error => console.log(error))
 
@@ -120,7 +108,6 @@ class App extends React.Component {
     const searchSubreddit = _.debounce((term) => {this.searchSubreddit(term)}, 600);
     let contentJSX;
     if (this.state.files.length > 0) {
-        console.log(this.state)
         let pagingJSX;
         const buttonNext = <button className="btn btn-primary" type="submit" onClick={this.nextPage}>Next</button>;
         const buttonPrev = <button className="btn btn-secondary" type="submit" onClick={this.prevPage}>Previous</button>;

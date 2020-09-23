@@ -2,7 +2,6 @@ import React from 'react';
 
 const ShowItem = ({file}) => {
     if( file.data.title) {
-        console.log(file.data);
         let subreddit = "https://reddit.com/r/" + file.data.subreddit;
         let post_link = "https://reddit.com" + file.data.permalink;
         return (
@@ -11,7 +10,7 @@ const ShowItem = ({file}) => {
                 <div className="card">
                     <div className="card-img-top">
                         <a href={post_link} target="_blank" rel="noopener noreferrer"><button className="btn btn-secondary btn-sm top-right-float">View Post</button></a>
-                    </div>s
+                    </div>
                     <div className="card-body">
                         <div className="card-title">   
                             <a href={file.data.url} target="_blank" rel="noopener noreferrer">{file.data.title}</a>
